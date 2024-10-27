@@ -1,9 +1,8 @@
 -- populate users
 DELETE
 FROM USERS;
-create sequence if not exists USERS_ID_SEQ start with 1;
-alter
-    sequence USERS_ID_SEQ restart with 1;
+create sequence USERS_ID_SEQ INCREMENT BY 1;
+alter sequence USERS_ID_SEQ restart with 1;
 insert into USERS (EMAIL, PASSWORD, FIRST_NAME, LAST_NAME, DISPLAY_NAME)
 values ('user@gmail.com', '{noop}password', 'userFirstName', 'userLastName', 'userDisplayName'),
        ('admin@gmail.com', '{noop}admin', 'adminFirstName', 'adminLastName', 'adminDisplayName'),
@@ -60,9 +59,9 @@ values (1, 'skype', 'userSkype'),
 
 delete
 from ATTACHMENT;
-create sequence if not exists ATTACHMENT_ID_SEQ start with 1;
+create sequence ATTACHMENT_ID_SEQ INCREMENT BY 1;
 alter
-    sequence ATTACHMENT_ID_SEQ restart with 1;
+sequence ATTACHMENT_ID_SEQ restart with 1;
 insert into ATTACHMENT (name, file_link, object_id, object_type, user_id, date_time)
 values ('Снимок экрана 1.png', './attachments/project/1_Снимок экрана 1.png', 2, 0, 4, '2023-05-04 22:28:50.215429'),
        ('Снимок экрана 2.png', './attachments/project/2_Снимок экрана 2.png', 2, 0, 4, '2023-05-04 22:28:53.687600'),
@@ -73,30 +72,30 @@ values ('Снимок экрана 1.png', './attachments/project/1_Снимок
        ('Ежедневный-чеклист.xlsx', './attachments/task/3_Ежедневный-чеклист.xlsx', 38, 2, 4,
         '2023-05-04 22:28:50.215429');
 alter
-    sequence ATTACHMENT_ID_SEQ restart with 1000;
+sequence ATTACHMENT_ID_SEQ restart with 1000;
 
 
 -- populate tasks
 delete
 from TASK;
-create sequence if not exists TASK_ID_SEQ start with 1;
+create sequence TASK_ID_SEQ INCREMENT BY 1;
 alter
-    sequence TASK_ID_SEQ restart with 1;
+sequence TASK_ID_SEQ restart with 1;
 delete
 from SPRINT;
-create sequence if not exists SPRINT_ID_SEQ start with 1;
+create sequence SPRINT_ID_SEQ INCREMENT BY 1;
 alter
-    sequence SPRINT_ID_SEQ restart with 1;
+sequence SPRINT_ID_SEQ restart with 1;
 delete
 from PROJECT;
-create sequence if not exists PROJECT_ID_SEQ start with 1;
+create sequence PROJECT_ID_SEQ INCREMENT BY 1;
 alter
-    sequence PROJECT_ID_SEQ restart with 1;
+sequence PROJECT_ID_SEQ restart with 1;
 delete
 from ACTIVITY;
-create sequence if not exists ACTIVITY_ID_SEQ start with 1;
+create sequence ACTIVITY_ID_SEQ INCREMENT BY 1;
 alter
-    sequence ACTIVITY_ID_SEQ restart with 1;
+sequence ACTIVITY_ID_SEQ restart with 1;
 
 insert into PROJECT (code, title, description, type_code, parent_id)
 values ('JiraRush', 'JiraRush', '«Mini-JIRA» app : project management system tutorial app', 'task_tracker', null),
@@ -104,7 +103,7 @@ values ('JiraRush', 'JiraRush', '«Mini-JIRA» app : project management system t
        ('Test_Project_2', 'Test Project 2', 'Just test project 2', 'task_tracker', null),
        ('JiraRush sub', 'JiraRush subproject', 'subproject', 'task_tracker', 1);
 alter
-    sequence PROJECT_ID_SEQ restart with 1000;
+sequence PROJECT_ID_SEQ restart with 1000;
 
 insert into SPRINT (status_code, startpoint, endpoint, code, project_id)
 values ('active', null, null, 'Sprint-2', 1),
@@ -113,213 +112,213 @@ values ('active', null, null, 'Sprint-2', 1),
        ('active', '2023-04-05 14:25:43', '2023-06-10 13:00:00', 'Sprint-3', 2),
        ('active', null, null, 'Sprint-1', 4);
 alter
-    sequence SPRINT_ID_SEQ restart with 1000;
+sequence SPRINT_ID_SEQ restart with 1000;
 
 ---- project 1 -------------
 INSERT INTO TASK (TITLE, TYPE_CODE, STATUS_CODE, PROJECT_ID, SPRINT_ID, STARTPOINT)
 values ('Data', 'epic', 'in_progress', 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Trees', 'epic', 'in_progress', 1, 1,
-        now() + random() * 300 + random() * 20),
-       ('UI', 'epic', 'in_progress', 1, 1, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('UI', 'epic', 'in_progress', 1, 1, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Sprint', 'epic', 'in_progress', 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Project', 'epic', 'in_progress', 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Task', 'epic', 'in_progress', 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Attachments', 'story', 'in_progress', 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Dashboard', 'epic', 'in_progress', 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Report of Sprint (UI)', 'story', 'in_progress', 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Organizational-architectural', 'epic', 'in_progress', 1, 1,
-        now() + random() * 300 + random() * 20), ---- project 2 -------------
-       ('Title', 'task', 'todo', 2, 2, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'todo', 2, 2, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20), ---- project 2 -------------
+       ('Title', 'task', 'todo', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'todo', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 2,
-        now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 2, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 2, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 2, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'canceled', 2, 2, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'canceled', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_test', 2, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 3,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 3,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 3,
-        now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 3, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 3, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 3, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 3, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 3, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_test', 2, 3,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_test', 2, 3,
-        now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'todo', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'story', 'todo', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'bug', 'todo', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'todo', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'todo', 2, 4, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'story', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'bug', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'epic', 'in_progress', 2, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_review', 2, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_review', 2, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'story', 'ready_for_test', 2, 4,
-        now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'review', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'bug', 'review', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'epic', 'test', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'story', 'done', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'bug', 'done', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'canceled', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'todo', 2, 2, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'todo', 2, 2, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'review', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'bug', 'review', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'epic', 'test', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'story', 'done', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'bug', 'done', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'canceled', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'todo', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'todo', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 2,
-        now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 2, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 2, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 2, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'canceled', 2, 2, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'canceled', 2, 2, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_test', 2, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 3,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 3,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'in_progress', 2, 3,
-        now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 3, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 3, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 3, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 3, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 3, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 3, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_test', 2, 3,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_test', 2, 3,
-        now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'todo', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'story', 'todo', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'bug', 'todo', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'todo', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'todo', 2, 4, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'story', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'bug', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'todo', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'epic', 'in_progress', 2, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_review', 2, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'task', 'ready_for_review', 2, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Title', 'story', 'ready_for_test', 2, 4,
-        now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'review', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'bug', 'review', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'test', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'epic', 'test', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'done', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'story', 'done', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'bug', 'done', 2, 4, now() + random() * 300 + random() * 20),
-       ('Title', 'task', 'canceled', 2, 4, now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'review', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'bug', 'review', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'test', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'epic', 'test', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'done', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'story', 'done', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'bug', 'done', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
+       ('Title', 'task', 'canceled', 2, 4, now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('subproject sprint task', 'epic', 'in_progress', 4, 5,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('subproject backlog task', 'epic', 'in_progress', 4, null,
-        now() + random() * 300 + random() * 20);
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20);
 
 INSERT INTO TASK (TITLE, TYPE_CODE, STATUS_CODE, PROJECT_ID, SPRINT_ID, PARENT_ID, STARTPOINT)
 values ('Add role manager and filters in security', 'task', 'done', 1, 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Add users from task-timing', 'task', 'ready_for_review', 1, 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Add tasks-2 in DB', 'task', 'in_progress', 1, 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Remove reference with USER_TYPE IN (3,4,5)', 'task', 'in_progress', 1, 1, 1,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('REST API for trees', 'task', 'in_progress', 1, 1, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Drawing in trees', 'task', 'in_progress', 1, 1, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Context menu', 'task', 'in_progress', 1, 1, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Reassignment sprint', 'task', 'in_progress', 1, 1, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Add task, subtask, sprint, subsprint', 'task', 'in_progress', 1, 1, 2,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Make layout for view TitleTo', 'task', 'in_progress', 1, 1, 3,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Make layout for edit TitleTo', 'task', 'in_progress', 1, 1, 3,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Fix header-fragment', 'task', 'ready_for_review', 1, 1, 3,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('REST API', 'task', 'in_progress', 1, 1, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Tests', 'task', 'in_progress', 1, 1, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('UI view, mock button to dashboard', 'task', 'in_progress', 1, 1, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('UI edit', 'task', 'in_progress', 1, 1, 4,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('REST API', 'task', 'in_progress', 1, 1, 5,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Tests', 'task', 'in_progress', 1, 1, 5,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('UI view, mock button to dashboard', 'task', 'in_progress', 1, 1, 5,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('UI edit', 'task', 'in_progress', 1, 1, 5,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('REST API', 'task', 'in_progress', 1, 1, 6,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Tests', 'task', 'in_progress', 1, 1, 6,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('UI view, mock button to dashboard', 'task', 'in_progress', 1, 1, 6,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('UI edit', 'task', 'in_progress', 1, 1, 6,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('UI view add to Task, mock button to dashboard', 'task', 'in_progress', 1, 1, 6,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('UI edit add to Task', 'task', 'in_progress', 1, 1, 6,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Edit changelog with changes of Task model', 'task', 'in_progress', 1, 1, 6,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('REST API: changeStatus', 'task', 'in_progress', 1, 1, 6,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Make columns with tasks', 'task', 'in_progress', 1, 1, 8,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('UI tab of tasks', 'task', 'in_progress', 1, 1, 8,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Context mune', 'task', 'in_progress', 1, 1, 8,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Duration, count of tasks, elapsed time', 'task', 'in_progress', 1, 1, 9,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Meeting, dividing tasks', 'task', 'in_progress', 1, 1, 10,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Refactoring packages', 'task', 'in_progress', 1, 1, 10,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Refactoring tasks', 'task', 'in_progress', 1, 1, 10,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Subproject sprint subtask', 'task', 'in_progress', 4, 5, 87,
-        now() + random() * 300 + random() * 20),
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20),
        ('Subproject backlog subtask', 'task', 'in_progress', 4, null, 88,
-        now() + random() * 300 + random() * 20);
+        now() + random() * 100  + random() * 100 + random() * 100 + random() * 20);
 alter
-    sequence TASK_ID_SEQ restart with 1000;
+sequence TASK_ID_SEQ restart with 1000;
 
 ---task 1------
 INSERT INTO ACTIVITY(AUTHOR_ID, TASK_ID, UPDATED, COMMENT, TITLE, DESCRIPTION, ESTIMATE, TYPE_CODE, STATUS_CODE,
