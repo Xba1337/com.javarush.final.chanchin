@@ -9,7 +9,7 @@ app:
 
 spring:
   config:
-    import: optional:application-secrets.yaml
+    import: application-secrets.yaml
   init:
     mode: never
   jpa:
@@ -43,6 +43,18 @@ spring:
   cache:
     cache-names: users
     caffeine.spec: maximumSize=10000,expireAfterAccess=5m
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            scope:
+              - email
+          google:
+            scope:
+              - email
+              - profile
 
   sql:
     init:
