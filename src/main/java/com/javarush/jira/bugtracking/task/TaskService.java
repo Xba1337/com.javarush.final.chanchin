@@ -13,6 +13,7 @@ import com.javarush.jira.common.error.DataConflictException;
 import com.javarush.jira.common.error.NotFoundException;
 import com.javarush.jira.common.util.Util;
 import com.javarush.jira.login.AuthUser;
+import com.javarush.jira.login.internal.UserRepository;
 import com.javarush.jira.ref.RefType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -139,5 +140,20 @@ public class TaskService {
         if (!userType.equals(possibleUserType)) {
             throw new DataConflictException(String.format(assign ? CANNOT_ASSIGN : CANNOT_UN_ASSIGN, userType, task.getStatusCode()));
         }
+    }
+
+    @Transactional
+    public void addTag(long taskId, String tag) {
+        Task task = handler.getRepository().getExisted(taskId);
+        if (!task.getTags().contains(tag)) {
+            task.getTags().add(tag);
+        }
+    }
+
+    @Transactional
+    public void removeTag(long taskId, String tag) {
+        Task task = handler.getRepository().getExisted(taskId);
+
+        task.getTags().remove(tag);
     }
 }

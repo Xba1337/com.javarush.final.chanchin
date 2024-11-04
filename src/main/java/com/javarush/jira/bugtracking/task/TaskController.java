@@ -156,4 +156,14 @@ public class TaskController {
             this(taskTo, new LinkedList<>());
         }
     }
+
+    @PostMapping("/{taskId}/tags")
+    public void addTag(@PathVariable long taskId, @RequestParam String tag) {
+        taskService.addTag(taskId, tag);
+    }
+
+    @DeleteMapping("/{taskId}/tags")
+    public void removeTag(@PathVariable long taskId, @RequestParam String tag) {
+        taskService.removeTag(taskId, tag);
+    }
 }
