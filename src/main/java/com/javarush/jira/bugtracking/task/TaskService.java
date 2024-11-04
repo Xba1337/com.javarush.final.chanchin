@@ -145,9 +145,9 @@ public class TaskService {
     @Transactional
     public void addTag(long taskId, String tag) {
         Task task = handler.getRepository().getExisted(taskId);
-        if (!task.getTags().contains(tag)) {
+
             task.getTags().add(tag);
-        }
+
     }
 
     @Transactional
