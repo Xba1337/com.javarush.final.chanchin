@@ -56,16 +56,6 @@ public class AppConfig {
         return env.acceptsProfiles(Profiles.of("test"));
     }
 
-    @Profile("prod")
-    public DataSource prodDataSource() {
-        return DataSourceBuilder.create().build();
-    }
-
-    @Profile("test")
-    public DataSource testDataSource() {
-        return DataSourceBuilder.create().build();
-    }
-
     @Autowired
     void configureAndStoreObjectMapper(ObjectMapper objectMapper) {
         objectMapper.registerModule(new Hibernate5JakartaModule());
