@@ -13,7 +13,10 @@ public class ProfileTestData {
     public static MatcherFactory.Matcher<Profile> PROFILE_MATCHER =
             MatcherFactory.usingIgnoringFieldsComparator(Profile.class, "user");
 
-    public static ProfileTo USER_PROFILE_TO = new ProfileTo(null,
+    public static MatcherFactory.Matcher<ProfileTo> PROFILE_TO_MATCHER =
+            MatcherFactory.usingIgnoringFieldsComparator(ProfileTo.class, "user");
+
+    public static ProfileTo USER_PROFILE_TO = new ProfileTo(1L,
             Set.of("assigned", "overdue", "deadline"),
             Set.of(new ContactTo("skype", "userSkype"),
                     new ContactTo("mobile", "+01234567890"),
@@ -38,6 +41,18 @@ public class ProfileTestData {
 
     public static ProfileTo getUpdatedTo() {
         return new ProfileTo(null,
+                Set.of("assigned", "three_days_before_deadline", "two_days_before_deadline", "one_day_before_deadline", "deadline", "overdue"),
+                Set.of(new ContactTo("skype", "newSkype"),
+                        new ContactTo("mobile", "+380987654321"),
+                        new ContactTo("website", "new.com"),
+                        new ContactTo("github", "newGitHub"),
+                        new ContactTo("tg", "newTg"),
+                        new ContactTo("vk", "newVk"),
+                        new ContactTo("linkedin", "newLinkedin")));
+    }
+
+    public static ProfileTo getBrokenUpdatedTo() {
+        return new ProfileTo(-1L,
                 Set.of("assigned", "three_days_before_deadline", "two_days_before_deadline", "one_day_before_deadline", "deadline", "overdue"),
                 Set.of(new ContactTo("skype", "newSkype"),
                         new ContactTo("mobile", "+380987654321"),
