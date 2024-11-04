@@ -3,11 +3,14 @@ package com.javarush.jira.bugtracking.task;
 import com.javarush.jira.bugtracking.Handlers;
 import com.javarush.jira.bugtracking.task.to.ActivityTo;
 import com.javarush.jira.common.error.DataConflictException;
+import com.javarush.jira.common.error.NotFoundException;
 import com.javarush.jira.login.AuthUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.javarush.jira.bugtracking.task.TaskUtil.getLatestValue;
@@ -72,5 +75,41 @@ public class ActivityService {
                 task.setTypeCode(latestType);
             }
         }
+    }
+
+    public Duration calculateTimeInProgress(long taskId) {
+        List<Activity> activities = handler.getRepository().findByTaskId(taskId);
+
+        LocalDateTime inProgressTime = activities.stream()
+                .filter(activity -> "in_progress".equals(activity.getStatusCode()))
+                .map(Activity::getUpdated)
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Status 'in_progress' not found for task " + taskId));
+
+        LocalDateTime readyForReviewTime = activities.stream()
+                .filter(activity -> "ready_for_review".equals(activity.getStatusCode()))
+                .map(Activity::getUpdated)
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Status 'ready_for_review' not found for task " + taskId));
+
+        return Duration.between(inProgressTime, readyForReviewTime);
+    }
+
+    public Duration calculateTimeInTest(long taskId) {
+        List<Activity> activities = handler.getRepository().findByTaskId(taskId);
+
+        LocalDateTime readyForReviewTime = activities.stream()
+                .filter(activity -> "ready_for_review".equals(activity.getStatusCode()))
+                .map(Activity::getUpdated)
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Status 'ready_for_review' not found for task " + taskId));
+
+        LocalDateTime doneTime = activities.stream()
+                .filter(activity -> "done".equals(activity.getStatusCode()))
+                .map(Activity::getUpdated)
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Status 'done' not found for task " + taskId));
+
+        return Duration.between(readyForReviewTime, doneTime);
     }
 }
